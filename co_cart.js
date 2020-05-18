@@ -7,8 +7,8 @@
 
    Shopping Cart Form Script
    
-   Author: 
-   Date:   
+   Author: Kevin Ramirez
+   Date:   5-18-20  
    
    Filename: co_cart.js
    
@@ -28,9 +28,15 @@
    
 */ 
 
+window.addEventListener("load", calcCart() {
+  
+});
 
-
-
+function calcCart(){
+   var orderCost = modelCost*modelQty;
+   var shipCost =  ;
+   var salesTax = 0.05* (orderCost+shipCost);
+}
 
 
 

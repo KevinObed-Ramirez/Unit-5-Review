@@ -7,8 +7,8 @@
 
    Credit Card Form Script
    
-   Author: 
-   Date:   
+   Author: Kevin Ramirez
+   Date:   5-18-20
    
    Filename: co_credit.js
    
@@ -52,7 +52,13 @@
 
 
 
-
+function runSubmit(){
+     validateName();
+     validateCredit();
+     validateNumber();
+     validateDate();
+     validateCVC();
+}
 
 
 /* Functions already provided in the file */
@@ -102,6 +108,14 @@ function validateCVC() {
   } else {
    cardCVC.setCustomValidity("");
   }
+}
+
+function validateDate(){
+   if(expDate.validity.valueMissing){
+      expDate.setCustomValidity("Enter the expiration date")
+   }else if(expDate !== (/^(0[1-9]|1[0-2])\/20[12]\d$/)){
+      expDate.setCustomValidity("Enter a valid expiration date")
+   }
 }
 
 function sumDigits(numStr) {
