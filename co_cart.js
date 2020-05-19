@@ -28,19 +28,37 @@
    
 */ 
 
-window.addEventListener("load", function () {
-  
-   modelQty.elements.model.onchange= calcCart;
-   modelQty.elements.qty.onchange= calcCart;
-   
-   calcCart()
+window.addEventListener("load", function () { 
+   calcCart();
+   var cart = document.forms.cart;
+   cart.elements.modelQty.onchange = calcCart;
+
+   var shippingOptions = document.querySelectorAll('input[name="shipping"]');
+   for (var i = 0;i <= shippingOptions.length; i++) {
+       shippingOptions[i].onclick = calcCart;
+   }
 
 });
 
 function calcCart(){
+   var Cart= document.forms.cart;
+   var machineCost = cart.elements.modelCost.value;
+   var qIndex = cart.elements.modelQty.selectedIndex;
+   var qty = cart.elements.modelQty[qIndex].value
+
    var orderCost = modelCost*modelQty;
-   var shipCost =  ;
+   cart.elements.orderCost.value = formatUSCurrency(orderCost);
+
+   var shipCost = document.querySelector('input[name="shipping"]:checked').value*qty;
+   cart.elements.shippingCost.value = formatNumber(shipCost);
+
+   cart.elements.subTotal.value = formatNumber(orderCost+shipCost, 2);
+
    var salesTax = 0.05* (orderCost+shipCost);
+
+   cart.elements.salesTax.value = formatNumber(salesTax,2);
+
+   cart.elements.cartTotal.value = formatUSCurrency(orderCost+shipCost+salesTax);
 }
 
 
