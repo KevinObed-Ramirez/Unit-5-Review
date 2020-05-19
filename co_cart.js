@@ -28,8 +28,13 @@
    
 */ 
 
-window.addEventListener("load", calcCart() {
+window.addEventListener("load", function () {
   
+   modelQty.elements.model.onchange= calcCart;
+   modelQty.elements.qty.onchange= calcCart;
+   
+   calcCart()
+
 });
 
 function calcCart(){

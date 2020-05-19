@@ -44,9 +44,30 @@
 
 */
 
+window.addEventListener("load", function(){
+   var orderData= location.search.slice(1);
+   orderData= orderData.replace(/\+/g," ");
+   orderData=decodeURIComponent(orderData);
+   var orderFields= orderData.split(/[&=]/g);
 
+   document.forms.order.elements.modelName.value=orderFields[3];
+   document.forms.order.elements.modelQty.value=orderFields[5];
+   document.forms.order.elements.orderCost.value=orderFields[7];
+   document.forms.order.elements.shippingType.value=orderFields[9];
+   document.forms.order.elements.shippingCost.value=orderFields[13];
+   document.forms.order.elements.subTotal.value=orderFields[15];
+   document.forms.order.elements.salesTax.value=orderFields[17];
+   document.forms.order.elements.cartTotal.value=orderFields[19];
+})
 
+window.addEventListener("load", function(){
+   document.getElementById("subButton").onclick = runSubmit;
+   document.getElementById("cardHolder").oninput = validateName;
+   document.getElementById("cardNumber").oninput = validateNumber;
+   document.getElementById("expDate").onchange = validateDate;
+   document.getElementById("cvc").oninput = validateCVC;
 
+})
 
 
 
@@ -109,7 +130,7 @@ function validateCVC() {
    cardCVC.setCustomValidity("");
   }
 }
-
+//Function added to validate the date
 function validateDate(){
    if(expDate.validity.valueMissing){
       expDate.setCustomValidity("Enter the expiration date")
